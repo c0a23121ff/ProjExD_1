@@ -15,6 +15,8 @@ def main():
     bgfl_img = pg.transform.flip(bg_img, True, False) #背景画像を左右反転
     koukaton_rct = koukaton_img.get_rect()
     koukaton_rct.center = [300, 200]
+    key_x = (0)
+    key_y = (0)
     tmr = 0
     while True:
         for event in pg.event.get():
@@ -26,16 +28,31 @@ def main():
         screen.blit(bgfl_img, [-x+4800, 0])
         
         key_lst = pg.key.get_pressed() #キー入力を key_lst に格納
+        # if key_lst[pg.K_UP]:
+        #     koukaton_rct.move_ip(0, -1)
+        # if key_lst[pg.K_DOWN]:
+        #     koukaton_rct.move_ip(0, 1)
+        # if key_lst[pg.K_LEFT]:
+        #     koukaton_rct.move_ip(-1, 0)
+        # if key_lst[pg.K_RIGHT]:
+        #     koukaton_rct.move_ip(1, 0)
+        
         if key_lst[pg.K_UP]:
-            koukaton_rct.move_ip(0, -1)
+            key_y += -1
         if key_lst[pg.K_DOWN]:
-            koukaton_rct.move_ip(0, 1)
+            key_y += 1
         if key_lst[pg.K_LEFT]:
-            koukaton_rct.move_ip(-1, 0)
+            key_x += -1
         if key_lst[pg.K_RIGHT]:
-            koukaton_rct.move_ip(1, 0)
+            key_x += 1
+        if any(key_lst):
+            koukaton_rct.move_ip(key_x, key_y)
+            key_x = 0
+            key_y = 0
         if not key_lst[pg.K_RIGHT]:
-            koukaton_rct.move_ip(-1, 0)
+            key_y = 0
+            koukaton_rct.move_ip(-1, key_y)
+
         screen.blit(koukaton_img, koukaton_rct) #screen surface にこうかとん画像を描画
 
         pg.display.update() #画面を更新

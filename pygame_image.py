@@ -24,6 +24,7 @@ def main():
         screen.blit(bgfl_img, [-x+1600, 0])
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bgfl_img, [-x+4800, 0])
+        
         key_lst = pg.key.get_pressed() #キー入力を key_lst に格納
         if key_lst[pg.K_UP]:
             koukaton_rct.move_ip(0, -1)
@@ -33,6 +34,8 @@ def main():
             koukaton_rct.move_ip(-1, 0)
         if key_lst[pg.K_RIGHT]:
             koukaton_rct.move_ip(1, 0)
+        if not key_lst[pg.K_RIGHT]:
+            koukaton_rct.move_ip(-1, 0)
         screen.blit(koukaton_img, koukaton_rct) #screen surface にこうかとん画像を描画
 
         pg.display.update() #画面を更新

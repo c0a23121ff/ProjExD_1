@@ -34,7 +34,8 @@ def main():
             koukaton_rct.move_ip(-1, 0)
         if key_lst[pg.K_RIGHT]:
             koukaton_rct.move_ip(1, 0)
-        
+        if not key_lst[pg.K_RIGHT]:
+            koukaton_rct.move_ip(-1, 0)
         screen.blit(koukaton_img, koukaton_rct) #screen surface にこうかとん画像を描画
 
         pg.display.update() #画面を更新

@@ -45,13 +45,13 @@ def main():
             key_x += -1
         if key_lst[pg.K_RIGHT]:
             key_x += 1
-        if any(key_lst):
-            koukaton_rct.move_ip(key_x, key_y)
-            key_x = 0
-            key_y = 0
-        if not key_lst[pg.K_RIGHT]:
-            key_y = 0
-            koukaton_rct.move_ip(-1, key_y)
+        else:
+            key_x=-1
+        
+        
+        koukaton_rct.move_ip(key_x, key_y)
+        key_x=0
+        key_y=0
 
         screen.blit(koukaton_img, koukaton_rct) #screen surface にこうかとん画像を描画
 
